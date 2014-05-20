@@ -17,7 +17,7 @@ ol, ul {
     list-style:none
 }
 blockquote, q {
-    quotes:none
+    quotes:none:;
 }
 blockquote:before, blockquote:after, q:before, q:after {
     content:none
@@ -28,9 +28,4 @@ table {
 }
 body {
     font-family:'Open Sans', serif;
-    background-color: #34495e;
-}
-
-.container {
-	margin-top: 15px;
 }

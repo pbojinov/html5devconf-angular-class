@@ -1,3 +1,4 @@
+// &params can be replaced using the params object in $http
 var weatherUrl = "http://api.openweathermap.org/data/2.5/"+
           "forecast/daily?mode=json" +
           "&units=imperial&cnt=1" +
