@@ -1,4 +1,13 @@
-var app = angular.module('weatherApp', []);
+var app = angular.module('weatherApp', ['ui.router']);
+
+app.config(function($stateProvider) {
+    	$stateProvider.state('root', {
+    		url: '',
+    		controller: 'HomeController',
+    		templateUrl: 'home.html'
+    	});
+    }
+);
 
 app.service('WeatherService', ['$http', '$q',
 

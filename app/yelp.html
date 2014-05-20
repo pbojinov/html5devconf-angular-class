@@ -1,0 +1,33 @@
+<div class="col-xs-12" ng-show='nearby'>
+    <h2>Businesses Nearby</h2>
+
+    <div class="btn-group">
+        <button class="btn btn-primary" ng-click='predicate="name"'>Name</button>
+
+        <button class="btn btn-primary" ng-click='predicate="avg_rating"'>Average Rating</button>
+
+        <button class="btn btn-primary" ng-click='predicate="review_count"'>Reviews</button>
+    </div>
+
+    <button class="btn btn-primary" ng-click='reverse=!reverse'>+/-</button>
+
+    <input type="text" ng-model='search.$' placeholder="Filter" />
+
+    <ul>
+        <li ng-repeat='biz in nearby.businesses | filter:search |
+                        orderBy:predicate:reverse'>
+
+            <a ng-href='{{ biz.url }}'>
+                <h3>
+                    {{ biz.name }}
+                </h3>
+            </a>
+            <img ng-src='{{ biz.rating_img_url }}' />
+            <img ng-src='{{ biz.photo_url }}' />
+            <h4>
+                {{ biz.avg_rating }} / {{ biz.review_count }}
+            </h4>
+            <!-- <pre> {{ biz | json }}</pre> -->
+        </li>
+    </ul>
+</div>
