@@ -2,8 +2,27 @@ var app = angular.module('weatherApp', []);
 
 app.service('WeatherService', ['$http',
     function() {
-        this.getWeatherFor = function(city) {
 
+        var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast/daily?';
+
+        this.getWeatherFor = function(city) {
+            $http({
+                method: 'JSONP',
+                url: weatherUrl,
+                params: {
+                    mode: 'json',
+                    units: 'imperial',
+                    callback: 'JSON_CALLBACK',
+                    cnt: 1,
+                    q: city
+                }
+            }).then(function(data) {
+                console.log('data ', data.data);
+                return data.data;
+            }).
+            catch (function(err) {
+                console.error('error in weather fetch ', err); 
+            });
         };
     }
 ]);
@@ -15,31 +34,14 @@ app.controller('HomeController', ['$scope', '$http', 'WeatherService',
         $scope.city = 'San Francisco, CA';
 
         $scope.fetchData = function() {
-            $scope.fetchWeatherData();
+            $scope.getWeatherData();
             $scope.getYelpData();
         }
 
-        var weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast/daily?';
-
-        $scope.fetchWeatherData = function() {
+        $scope.getWeatherData = function() {
             console.log('fetchData called', $scope.city);
-            $http({
-                method: 'JSONP',
-                url: weatherUrl,
-                params: {
-                    mode: 'json',
-                    units: 'imperial',
-                    callback: 'JSON_CALLBACK',
-                    cnt: 1,
-                    q: $scope.city
-                }
-            }).then(function(data) {
-                console.log('data', data.data);
-                $scope.weather = data.data;
-            }).
-            catch (function(err) {
-                console.error('error in weather fetch', err);
-                $scope.error = err;
+            WeatherService.getWeatherFor($scope.city).then(function(weather) {
+                $scope.weather = weather;
             });
         }
 
