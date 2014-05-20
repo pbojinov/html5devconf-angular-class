@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/open-sans-fontface/open-sans.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body ng-app="weatherApp">
+    
+    <div class="container" ng-controller="HomeController">
+        <h2>Hello {{name}}</h2>
+        <button ng-click="sayHello()">Say Hello</button>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>
