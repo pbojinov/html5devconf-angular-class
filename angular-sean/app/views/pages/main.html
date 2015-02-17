@@ -1,0 +1,21 @@
+<!-- One-time binding example -->
+<h1>{{::mainCtrl.className}}</h1>
+
+<!-- Two-way, watched binding example -->
+<h3>{{mainCtrl.classDescription | reverse: 4}}</h3>
+
+<input ng-model='mainCtrl.classDescription'>
+
+<p>{{mainCtrl.now}}</p>
+
+<select ng-options="movie.title for movie in mainCtrl.movies | orderBy: 'year' "
+		ng-model="mainCtrl.favoriteMovie">
+	<option value=""></option>
+</select>
+
+<movie ng-repeat='movie in mainCtrl.movies' 
+	   title="{{movie.title}}" 
+	   year="{{movie.year}}"
+	   ng-class="{'favorite': mainCtrl.checkMovieTitle(movie.title)}">
+	   Coming soon...
+</movie>
